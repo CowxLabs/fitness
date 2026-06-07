@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitness Demo 2</title>
+<meta name="description" content="GitHub Pages demo: workout tracker">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0d1117; --bg2: #161b22; --bg3: #21262d;
+  --text: #c9d1d9; --text2: #8b949e; --heading: #f0f6fc;
+  --primary: #58a6ff; --primary-hover: #79c0ff;
+  --border: #30363d; --success: #3fb950; --warning: #d29922; --danger: #f85149;
+  --card-bg: #161b22; --shadow: 0 1px 3px rgba(0,0,0,.3);
+  --radius: 8px; --font: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,sans-serif;
+  --transition: .3s ease;
+}
+[data-theme="light"] {
+  --bg: #ffffff; --bg2: #f6f8fa; --bg3: #eaeef2;
+  --text: #24292f; --text2: #57606a; --heading: #1f2328;
+  --primary: #0969da; --primary-hover: #0550ae;
+  --border: #d0d7de; --card-bg: #ffffff;
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font); background: var(--bg); color: var(--text);
+  line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column;
+  transition: background var(--transition), color var(--transition);
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+nav {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 24px; background: var(--bg2); border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100; backdrop-filter: blur(8px);
+}
+.logo { font-size: 1.25rem; font-weight: 700; color: var(--heading); display: flex; align-items: center; gap: 8px; }
+.logo-icon { width: 28px; height: 28px; border-radius: 6px; display: inline-flex; align-items: center; justify-content: center; font-size: 16px; }
+#theme-toggle {
+  background: var(--bg3); border: 1px solid var(--border); color: var(--text);
+  width: 40px; height: 40px; border-radius: var(--radius); cursor: pointer;
+  font-size: 18px; display: flex; align-items: center; justify-content: center;
+}
+#theme-toggle:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+main { flex: 1; max-width: 960px; margin: 0 auto; padding: 40px 24px; width: 100%; }
+footer { text-align: center; padding: 24px; color: var(--text2); border-top: 1px solid var(--border); font-size: .875rem; }
+footer a { color: var(--primary); }
+.hero { text-align: center; padding: 60px 0 40px; }
+.hero h1 { font-size: 2.5rem; font-weight: 800; color: var(--heading); margin-bottom: 16px; }
+.hero p { font-size: 1.15rem; color: var(--text2); max-width: 640px; margin: 0 auto 24px; }
+.btn {
+  display: inline-block; background: var(--primary); color: #fff; padding: 10px 24px;
+  border-radius: var(--radius); font-weight: 600; border: none; cursor: pointer;
+  font-size: .95rem;
+}
+.btn:hover { background: var(--primary-hover); }
+.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-outline:hover { background: var(--bg3); }
+.btn-sm { padding: 6px 14px; font-size: .8rem; }
+.btn-danger { background: var(--danger); }
+.btn-danger:hover { background: #d0353f; }
+.card {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px;
+}
+.card:hover { border-color: var(--primary); }
+.grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.section-title { font-size: 1.5rem; font-weight: 700; color: var(--heading); margin: 40px 0 20px; }
+.tag {
+  display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: .8rem;
+  background: var(--bg3); color: var(--primary); border: 1px solid var(--border);
+}
+.badge {
+  display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: .75rem; font-weight: 600;
+}
+.badge-green { background: rgba(63,185,80,.15); color: var(--success); }
+.badge-yellow { background: rgba(210,153,34,.15); color: var(--warning); }
+.badge-red { background: rgba(248,81,73,.15); color: var(--danger); }
+.badge-blue { background: rgba(88,166,255,.15); color: var(--primary); }
+input, textarea, select {
+  padding: 10px 16px; border-radius: var(--radius); border: 1px solid var(--border);
+  background: var(--bg2); color: var(--text); font-size: .9rem; font-family: var(--font);
+  outline: none;
+}
+input:focus, textarea:focus, select:focus { border-color: var(--primary); }
+</style>
+
+</head>
+<body>
+<nav>
+  <a href="/" class="logo"><span class="logo-icon">&#x25B6;</span>Fitness</a>
+  <button id="theme-toggle" aria-label="Toggle theme">&#x2600;</button>
+</nav>
+<main>
+  <section class="hero">
+    <h1>Fitness</h1>
+    <p>GitHub Pages demo: a workout tracker with dark/light mode.</p>
+  </section>
+  
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:24px">
+  <div class="card" style="text-align:center;padding:20px"><div style="font-size:2rem;margin-bottom:8px">&#x1F4AA;</div><p style="font-size:.8rem;color:var(--text2)">Workouts</p><p style="font-size:1.5rem;font-weight:700;color:var(--heading)">12</p><span class="badge badge-green">This week</span></div>
+  <div class="card" style="text-align:center;padding:20px"><div style="font-size:2rem;margin-bottom:8px">&#x1F525;</div><p style="font-size:.8rem;color:var(--text2)">Calories</p><p style="font-size:1.5rem;font-weight:700;color:var(--heading)">4,280</p><span class="badge badge-blue">This week</span></div>
+  <div class="card" style="text-align:center;padding:20px"><div style="font-size:2rem;margin-bottom:8px">&#x23F1;</div><p style="font-size:.8rem;color:var(--text2)">Minutes</p><p style="font-size:1.5rem;font-weight:700;color:var(--heading)">360</p><span class="badge badge-yellow">This week</span></div>
+  <div class="card" style="text-align:center;padding:20px"><div style="font-size:2rem;margin-bottom:8px">&#x1F3C6;</div><p style="font-size:.8rem;color:var(--text2)">Streak</p><p style="font-size:1.5rem;font-weight:700;color:var(--heading)">7</p><span class="badge badge-green">Days</span></div>
+</div>
+<h2 class="section-title">Today's Workout</h2>
+<div class="card" style="margin-bottom:24px">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+    <h3 style="color:var(--heading);font-size:1rem">Upper Body</h3>
+    <span class="badge badge-green">In Progress</span>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem">
+      <span style="color:var(--heading)">Bench Press</span>
+      <span style="color:var(--text2)">4x10 @ 135 lbs</span>
+      <input type="checkbox" style="accent-color:var(--success);width:18px;height:18px">
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem">
+      <span style="color:var(--heading)">Dumbbell Rows</span>
+      <span style="color:var(--text2)">4x12 @ 45 lbs</span>
+      <input type="checkbox" style="accent-color:var(--success);width:18px;height:18px">
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem">
+      <span style="color:var(--heading)">Overhead Press</span>
+      <span style="color:var(--text2)">3x10 @ 95 lbs</span>
+      <input type="checkbox" style="accent-color:var(--success);width:18px;height:18px">
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;font-size:.85rem">
+      <span style="color:var(--heading)">Pull-ups</span>
+      <span style="color:var(--text2)">3x8</span>
+      <input type="checkbox" style="accent-color:var(--success);width:18px;height:18px">
+    </div>
+  </div>
+</div>
+<h2 class="section-title">Weekly Progress</h2>
+<div class="card">
+  <div style="display:flex;align-items:end;height:100px;gap:8px;margin-bottom:8px">
+    <div style="flex:1;height:70%;background:var(--success);border-radius:4px 4px 0 0" title="Mon: 45min"></div>
+    <div style="flex:1;height:85%;background:var(--success);border-radius:4px 4px 0 0" title="Tue: 55min"></div>
+    <div style="flex:1;height:60%;background:var(--success);border-radius:4px 4px 0 0" title="Wed: 40min"></div>
+    <div style="flex:1;height:95%;background:var(--success);border-radius:4px 4px 0 0" title="Thu: 60min"></div>
+    <div style="flex:1;height:75%;background:var(--success);border-radius:4px 4px 0 0" title="Fri: 50min"></div>
+    <div style="flex:1;height:0%;background:var(--bg3);border-radius:4px 4px 0 0" title="Sat: Rest"></div>
+    <div style="flex:1;height:0%;background:var(--bg3);border-radius:4px 4px 0 0" title="Sun: Rest"></div>
+  </div>
+  <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text2)"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+</div>
+
+</main>
+<footer>
+  <p>Powered by <a href="https://pages.github.com">GitHub Pages</a> &mdash; <a href="https://github.com/CowxLabs/fitness">Source</a></p>
+</footer>
+<script>
+const toggle = document.getElementById('theme-toggle');
+const html = document.documentElement;
+const stored = localStorage.getItem('theme');
+if (stored) html.setAttribute('data-theme', stored);
+else html.setAttribute('data-theme', 'dark');
+toggle.textContent = html.getAttribute('data-theme') === 'dark' ? '\u2600' : '\uD83C\uDF19';
+toggle.addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  toggle.textContent = next === 'dark' ? '\u2600' : '\uD83C\uDF19';
+});
+
+</script>
+</body>
+</html>
